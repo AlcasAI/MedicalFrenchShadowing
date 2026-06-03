@@ -11,7 +11,9 @@ export default function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route path="/" element={<Home />} />
+        {/* L'app si apre direttamente sulla modalità passiva (focus telefono) */}
+        <Route path="/" element={<Navigate to="/passive" replace />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/library" element={<Library />} />
         <Route path="/shadowing" element={<Shadowing />} />
         <Route path="/passive" element={<Passive />} />

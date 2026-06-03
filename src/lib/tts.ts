@@ -105,6 +105,53 @@ export function speakFr(text: string, opts: SpeakOptions = {}): void {
   });
 }
 
+// Versione "await": la Promise si risolve SOLO quando la frase è davvero finita.
+// È la base della modalità passiva: niente più frasi che scorrono in anticipo.
+export function speakFrAsync(
+  text: string,
+  opts: { rate?: number; onStart?: () => void } = {}
+): Promise<void> {
+  const simMs = Math.min(7000, Math.max(1400, text.length * 60));
+  return new Promise((resolve) => {
+    if (!ttsAvailable()) {
+      opts.onStart?.();
+      window.setTimeout(resolve, simMs);
+      return;
+    }
+    voicesReady().then(() => {
+      // Nessuna voce nel sistema (es. desktop Linux): simula la durata
+      if (allVoices().length === 0) {
+        opts.onStart?.();
+        window.setTimeout(resolve, simMs);
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = "fr-FR";
+      const voice = pickFrenchVoice();
+      if (voice) u.voice = voice;
+      u.rate = opts.rate ?? 0.95;
+      u.pitch = 1;
+      u.volume = 1;
+
+      let settled = false;
+      const finish = () => {
+        if (settled) return;
+        settled = true;
+        stopKeepAlive();
+        resolve();
+      };
+      u.onstart = () => {
+        startKeepAlive();
+        opts.onStart?.();
+      };
+      u.onend = finish;
+      u.onerror = finish;
+      window.speechSynthesis.speak(u);
+    });
+  });
+}
+
 export function stopSpeaking(): void {
   if (ttsAvailable()) window.speechSynthesis.cancel();
   stopKeepAlive();
