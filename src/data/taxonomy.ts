@@ -10,7 +10,13 @@ export type Specialty =
   | "Anamnesi generale"
   | "Urgenze/Rianimazione"
   | "Cardiologia"
-  | "Radiologia/Imaging";
+  | "Radiologia/Imaging"
+  | "Pneumologia"
+  | "Gastroenterologia"
+  | "Neurologia"
+  | "Nefrologia"
+  | "Endocrinologia"
+  | "Infettivologia";
 
 export type Phase =
   | "Anamnesi"
@@ -43,6 +49,12 @@ export const SPECIALTIES: { name: Specialty; emoji: string; color: string }[] = 
   { name: "Urgenze/Rianimazione", emoji: "🚑", color: "#dc2626" },
   { name: "Cardiologia", emoji: "❤️", color: "#db2777" },
   { name: "Radiologia/Imaging", emoji: "🩻", color: "#7c3aed" },
+  { name: "Pneumologia", emoji: "🫁", color: "#0891b2" },
+  { name: "Gastroenterologia", emoji: "🍽️", color: "#ca8a04" },
+  { name: "Neurologia", emoji: "🧠", color: "#4f46e5" },
+  { name: "Nefrologia", emoji: "🫘", color: "#0e7490" },
+  { name: "Endocrinologia", emoji: "🦋", color: "#c026d3" },
+  { name: "Infettivologia", emoji: "🦠", color: "#16a34a" },
 ];
 
 export const PHASES: { name: Phase; emoji: string }[] = [

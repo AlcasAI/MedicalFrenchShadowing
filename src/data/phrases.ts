@@ -7,6 +7,12 @@ import { ANAMNESI } from "./content/anamnesi";
 import { URGENZE } from "./content/urgenze";
 import { CARDIOLOGIA } from "./content/cardiologia";
 import { IMAGING } from "./content/imaging";
+import { PNEUMOLOGIA } from "./content/pneumologia";
+import { GASTROENTEROLOGIA } from "./content/gastroenterologia";
+import { NEUROLOGIA } from "./content/neurologia";
+import { NEFROLOGIA } from "./content/nefrologia";
+import { ENDOCRINOLOGIA } from "./content/endocrinologia";
+import { INFETTIVOLOGIA } from "./content/infettivologia";
 
 export * from "./taxonomy";
 
@@ -15,4 +21,10 @@ export const PHRASES: Phrase[] = [
   ...URGENZE,
   ...CARDIOLOGIA,
   ...IMAGING,
+  ...PNEUMOLOGIA,
+  ...GASTROENTEROLOGIA,
+  ...NEUROLOGIA,
+  ...NEFROLOGIA,
+  ...ENDOCRINOLOGIA,
+  ...INFETTIVOLOGIA,
 ];
