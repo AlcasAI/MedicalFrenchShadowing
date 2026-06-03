@@ -105,10 +105,23 @@ export function speakFr(text: string, opts: SpeakOptions = {}): void {
   });
 }
 
-// Versione "await": la Promise si risolve SOLO quando la frase è davvero finita.
+// Sceglie una voce per una lingua qualsiasi (es. "fr-FR", "it-IT")
+function pickVoice(lang: string): SpeechSynthesisVoice | null {
+  const voices = allVoices();
+  const full = lang.toLowerCase();
+  const base = full.split("-")[0];
+  return (
+    voices.find((v) => v.lang?.toLowerCase() === full) ??
+    voices.find((v) => v.lang?.toLowerCase().startsWith(base)) ??
+    null
+  );
+}
+
+// Versione "await" multilingua: la Promise si risolve SOLO a frase davvero finita.
 // È la base della modalità passiva: niente più frasi che scorrono in anticipo.
-export function speakFrAsync(
+export function speakLangAsync(
   text: string,
+  lang: string,
   opts: { rate?: number; onStart?: () => void } = {}
 ): Promise<void> {
   const simMs = Math.min(7000, Math.max(1400, text.length * 60));
@@ -127,8 +140,8 @@ export function speakFrAsync(
       }
       window.speechSynthesis.cancel();
       const u = new SpeechSynthesisUtterance(text);
-      u.lang = "fr-FR";
-      const voice = pickFrenchVoice();
+      u.lang = lang;
+      const voice = pickVoice(lang);
       if (voice) u.voice = voice;
       u.rate = opts.rate ?? 0.95;
       u.pitch = 1;
@@ -151,6 +164,16 @@ export function speakFrAsync(
     });
   });
 }
+
+export const speakFrAsync = (
+  text: string,
+  opts: { rate?: number; onStart?: () => void } = {}
+) => speakLangAsync(text, "fr-FR", opts);
+
+export const speakItAsync = (
+  text: string,
+  opts: { rate?: number; onStart?: () => void } = {}
+) => speakLangAsync(text, "it-IT", opts);
 
 export function stopSpeaking(): void {
   if (ttsAvailable()) window.speechSynthesis.cancel();

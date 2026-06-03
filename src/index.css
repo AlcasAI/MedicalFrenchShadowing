@@ -521,6 +521,7 @@ body {
 }
 .ps-toggles {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   margin-top: 2px;
 }
@@ -540,6 +541,13 @@ body {
   margin-top: 14px;
   opacity: 0.75;
   font-size: 16px;
+  transition: all 0.2s;
+}
+.passive-now .pit.pit-active {
+  opacity: 1;
+  color: #5eead4;
+  font-weight: 700;
+  transform: scale(1.04);
 }
 .passive-controls {
   display: flex;

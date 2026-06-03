@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { PHRASES } from "../data/phrases";
-import { speakFrAsync, stopSpeaking } from "../lib/tts";
+import { speakFrAsync, speakItAsync, stopSpeaking } from "../lib/tts";
 
 // Quante volte ripetere ogni frase prima di passare alla successiva
 const REPS_OPTIONS = [1, 2, 3, 5, 10];
@@ -21,19 +21,23 @@ export default function Passive() {
   const [pauseMs, setPauseMs] = useState(1000);
   const [loop, setLoop] = useState(true);
   const [showIt, setShowIt] = useState(true);
+  const [readIt, setReadIt] = useState(true);
   const [repNow, setRepNow] = useState(0);
+  const [phase, setPhase] = useState<"fr" | "it">("fr");
 
   // Refs per la sequenza asincrona (così i cambi di impostazione sono "live")
   const runIdRef = useRef(0);
   const repsRef = useRef(reps);
   const pauseRef = useRef(pauseMs);
   const loopRef = useRef(loop);
+  const readItRef = useRef(readIt);
   const indexRef = useRef(index);
   const sleepTimer = useRef<number | null>(null);
 
   useEffect(() => { repsRef.current = reps; }, [reps]);
   useEffect(() => { pauseRef.current = pauseMs; }, [pauseMs]);
   useEffect(() => { loopRef.current = loop; }, [loop]);
+  useEffect(() => { readItRef.current = readIt; }, [readIt]);
   useEffect(() => { indexRef.current = index; }, [index]);
 
   const sleep = (ms: number) =>
@@ -63,6 +67,7 @@ export default function Passive() {
       const phrase = PHRASES[idx];
       const totalReps = repsRef.current;
 
+      setPhase("fr");
       for (let r = 1; r <= totalReps; r++) {
         if (!alive()) return;
         setRepNow(r);
@@ -79,6 +84,16 @@ export default function Passive() {
             if (!alive()) return;
           }
         }
+      }
+
+      // 🇮🇹 a fine giro, leggi la traduzione italiana prima di cambiare frase
+      if (readItRef.current) {
+        if (!alive()) return;
+        setPhase("it");
+        await sleep(500);
+        if (!alive()) return;
+        await speakItAsync(phrase.it, { rate: 1 });
+        if (!alive()) return;
       }
 
       // breve stacco tra una frase e la successiva
@@ -105,6 +120,7 @@ export default function Passive() {
   const pause = () => {
     setPlaying(false);
     setRepNow(0);
+    setPhase("fr");
     stopSeq();
   };
   const toggle = () => (playing ? pause() : start());
@@ -114,6 +130,7 @@ export default function Passive() {
     setIndex(i);
     indexRef.current = i;
     setRepNow(0);
+    setPhase("fr");
     if (playing) runFrom(i);
     else stopSeq();
   };
@@ -134,10 +151,16 @@ export default function Passive() {
 
       <div className="passive-now">
         <div className="pfr">{phrase.fr}</div>
-        {showIt && <div className="pit">{phrase.it}</div>}
+        {showIt && (
+          <div className={"pit" + (phase === "it" ? " pit-active" : "")}>{phrase.it}</div>
+        )}
         <div className="passive-rep">
-          {playing ? `🔊 Ripetizione ${repNow}/${reps}` : "⏸ In pausa"} · frase{" "}
-          {index + 1}/{PHRASES.length}
+          {!playing
+            ? "⏸ In pausa"
+            : phase === "it"
+            ? "🇮🇹 Traduzione"
+            : `🔊 Ripetizione ${repNow}/${reps}`}{" "}
+          · frase {index + 1}/{PHRASES.length}
         </div>
       </div>
 
@@ -186,6 +209,12 @@ export default function Passive() {
 
         <div className="ps-toggles">
           <button
+            className={"toggle" + (readIt ? " on" : "")}
+            onClick={() => setReadIt((v) => !v)}
+          >
+            🔊 Leggi traduzione IT a fine giro
+          </button>
+          <button
             className={"toggle" + (loop ? " on" : "")}
             onClick={() => setLoop((v) => !v)}
           >
@@ -195,7 +224,7 @@ export default function Passive() {
             className={"toggle" + (showIt ? " on" : "")}
             onClick={() => setShowIt((v) => !v)}
           >
-            🇮🇹 Traduzione
+            🇮🇹 Mostra traduzione
           </button>
         </div>
       </div>
