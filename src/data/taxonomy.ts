@@ -26,7 +26,17 @@ export type Specialty =
   | "Chirurgia generale"
   | "Geriatria"
   | "Urologia"
-  | "Otorinolaringoiatria";
+  | "Otorinolaringoiatria"
+  | "Reumatologia"
+  | "Ematologia"
+  | "Oftalmologia"
+  | "Anestesia"
+  | "Medicina interna"
+  | "Allergologia"
+  | "Chirurgia vascolare"
+  | "Cure palliative"
+  | "Fisiatria/Riabilitazione"
+  | "Odontoiatria";
 
 export type Phase =
   | "Anamnesi"
@@ -75,6 +85,16 @@ export const SPECIALTIES: { name: Specialty; emoji: string; color: string }[] = 
   { name: "Geriatria", emoji: "👴", color: "#a16207" },
   { name: "Urologia", emoji: "💧", color: "#0284c7" },
   { name: "Otorinolaringoiatria", emoji: "👂", color: "#0f766e" },
+  { name: "Reumatologia", emoji: "🖐️", color: "#be123c" },
+  { name: "Ematologia", emoji: "🩸", color: "#b91c1c" },
+  { name: "Oftalmologia", emoji: "👁️", color: "#1d4ed8" },
+  { name: "Anestesia", emoji: "💉", color: "#8b5cf6" },
+  { name: "Medicina interna", emoji: "🩺", color: "#115e59" },
+  { name: "Allergologia", emoji: "🤧", color: "#65a30d" },
+  { name: "Chirurgia vascolare", emoji: "🫀", color: "#be185d" },
+  { name: "Cure palliative", emoji: "🕊️", color: "#6b7280" },
+  { name: "Fisiatria/Riabilitazione", emoji: "🦽", color: "#0e7490" },
+  { name: "Odontoiatria", emoji: "🦷", color: "#0369a1" },
 ];
 
 export const PHASES: { name: Phase; emoji: string }[] = [

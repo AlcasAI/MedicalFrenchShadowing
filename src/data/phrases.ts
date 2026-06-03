@@ -23,6 +23,16 @@ import { CHIRURGIA } from "./content/chirurgia";
 import { GERIATRIA } from "./content/geriatria";
 import { UROLOGIA } from "./content/urologia";
 import { ORL } from "./content/orl";
+import { REUMATOLOGIA } from "./content/reumatologia";
+import { EMATOLOGIA } from "./content/ematologia";
+import { OFTALMOLOGIA } from "./content/oftalmologia";
+import { ANESTESIA } from "./content/anestesia";
+import { MEDICINA_INTERNA } from "./content/internistica";
+import { ALLERGOLOGIA } from "./content/allergologia";
+import { VASCOLARE } from "./content/vascolare";
+import { PALLIATIVE } from "./content/palliative";
+import { RIABILITAZIONE } from "./content/riabilitazione";
+import { ODONTOIATRIA } from "./content/odontoiatria";
 
 export * from "./taxonomy";
 
@@ -47,4 +57,14 @@ export const PHRASES: Phrase[] = [
   ...GERIATRIA,
   ...UROLOGIA,
   ...ORL,
+  ...REUMATOLOGIA,
+  ...EMATOLOGIA,
+  ...OFTALMOLOGIA,
+  ...ANESTESIA,
+  ...MEDICINA_INTERNA,
+  ...ALLERGOLOGIA,
+  ...VASCOLARE,
+  ...PALLIATIVE,
+  ...RIABILITAZIONE,
+  ...ODONTOIATRIA,
 ];
