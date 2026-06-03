@@ -1,0 +1,1 @@
+{"root":["./src/App.tsx","./src/main.tsx","./src/components/Layout.tsx","./src/data/phrases.ts","./src/lib/storage.ts","./src/lib/tts.ts","./src/pages/Home.tsx","./src/pages/Library.tsx","./src/pages/Passive.tsx","./src/pages/Progress.tsx","./src/pages/Review.tsx","./src/pages/Shadowing.tsx"],"version":"5.9.3"}
