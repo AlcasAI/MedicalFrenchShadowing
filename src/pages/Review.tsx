@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { PHRASES } from "../data/phrases";
+import { PHRASES } from "../data/all";
 import { speakFr } from "../lib/tts";
 import { gradeCard } from "../lib/storage";
 

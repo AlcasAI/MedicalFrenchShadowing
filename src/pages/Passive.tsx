@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { PHRASES, SPECIALTIES, PHASES, LEVELS } from "../data/phrases";
-import type { Level, Phase, Specialty } from "../data/phrases";
+import { SPECIALTIES, PHASES, LEVELS } from "../data/phrases";
+import type { Level, Phase, Specialty, Phrase } from "../data/phrases";
 import { speakFrAsync, speakItAsync, stopSpeaking } from "../lib/tts";
 
 const REPS_OPTIONS = [1, 2, 3, 5, 10];
@@ -20,6 +20,22 @@ function toggleInSet<T>(set: Set<T>, value: T): Set<T> {
 }
 
 export default function Passive() {
+  // Catalogo caricato in modo asincrono (chunk separato)
+  const [allPhrases, setAllPhrases] = useState<Phrase[]>([]);
+  const [loaded, setLoaded] = useState(false);
+  useEffect(() => {
+    let active = true;
+    import("../data/all").then((m) => {
+      if (active) {
+        setAllPhrases(m.PHRASES);
+        setLoaded(true);
+      }
+    });
+    return () => {
+      active = false;
+    };
+  }, []);
+
   // Filtri playlist (set vuoto = "tutte")
   const [selSpec, setSelSpec] = useState<Set<Specialty>>(new Set());
   const [selPhase, setSelPhase] = useState<Set<Phase>>(new Set());
@@ -40,13 +56,13 @@ export default function Passive() {
   // Playlist filtrata
   const playlist = useMemo(
     () =>
-      PHRASES.filter(
+      allPhrases.filter(
         (p) =>
           (selSpec.size === 0 || selSpec.has(p.specialty)) &&
           (selPhase.size === 0 || selPhase.has(p.phase)) &&
           (selLevel.size === 0 || selLevel.has(p.level))
       ),
-    [selSpec, selPhase, selLevel]
+    [allPhrases, selSpec, selPhase, selLevel]
   );
 
   // Refs per la sequenza asincrona (impostazioni "live")
@@ -187,7 +203,7 @@ export default function Passive() {
       </div>
 
       <button className="playlist-btn" onClick={() => setShowFilters((v) => !v)}>
-        🎛️ Playlist · {playlist.length} frasi {showFilters ? "▲" : "▼"}
+        🎛️ Playlist · {loaded ? `${playlist.length} frasi` : "…"} {showFilters ? "▲" : "▼"}
       </button>
 
       {showFilters && (
@@ -253,7 +269,11 @@ export default function Passive() {
       )}
 
       <div className="passive-now">
-        {phr ? (
+        {!loaded ? (
+          <div className="pfr" style={{ fontSize: 18, opacity: 0.8 }}>
+            Caricamento del catalogo…
+          </div>
+        ) : phr ? (
           <>
             <div className="pfr">{phr.fr}</div>
             {showIt && (

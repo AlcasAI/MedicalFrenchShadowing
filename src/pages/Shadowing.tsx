@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { PHRASES } from "../data/phrases";
+import { PHRASES } from "../data/all";
 import { speakFr, stopSpeaking, voiceStatus } from "../lib/tts";
 import { toggleMastered, getProgress } from "../lib/storage";
 

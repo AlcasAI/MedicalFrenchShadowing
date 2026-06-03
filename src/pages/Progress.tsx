@@ -1,4 +1,4 @@
-import { PHRASES, LEVELS } from "../data/phrases";
+import { PHRASES, LEVELS } from "../data/all";
 import { getProgress } from "../lib/storage";
 
 const WEEK = [

@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { PHRASES, SPECIALTIES, LEVELS, type Level, type Specialty } from "../data/phrases";
+import { PHRASES, SPECIALTIES, LEVELS, type Level, type Specialty } from "../data/all";
 
 export default function Library() {
   const nav = useNavigate();
