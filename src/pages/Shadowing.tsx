@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { PHRASES } from "../data/phrases";
-import { speakFr, stopSpeaking } from "../lib/tts";
+import { speakFr, stopSpeaking, voiceStatus } from "../lib/tts";
 import { toggleMastered, getProgress } from "../lib/storage";
 
 // Barre della waveform finta (altezze pseudo-casuali ma stabili)
@@ -23,9 +23,23 @@ export default function Shadowing() {
   const [slow, setSlow] = useState(false);
   const [recording, setRecording] = useState(false);
   const [mastered, setMastered] = useState<string[]>(getProgress().masteredIds);
+  const [audioNote, setAudioNote] = useState<string | null>(null);
 
   const phrase = deck[index];
   const gapTimer = useRef<number | null>(null);
+
+  // Diagnostica audio (TTS segnaposto): avvisa se manca la voce francese
+  useEffect(() => {
+    voiceStatus().then((s) => {
+      if (s === "no-french")
+        setAudioNote("Nessuna voce francese installata sul dispositivo: senti la voce di sistema.");
+      else if (s === "none")
+        setAudioNote("Il dispositivo non ha voci vocali installate: l'audio è simulato (ritmo loop/gap ok).");
+      else if (s === "unsupported")
+        setAudioNote("Questo browser non supporta la sintesi vocale: prova con Chrome o Safari.");
+      else setAudioNote(null);
+    });
+  }, []);
 
   const stopAll = () => {
     stopSpeaking();
@@ -149,6 +163,8 @@ export default function Shadowing() {
       {recording && (
         <div className="banner">🔴 Registrazione (demo) · qui apparirà il confronto di pronuncia</div>
       )}
+
+      {audioNote && <div className="banner">🔈 {audioNote}</div>}
     </>
   );
 }
