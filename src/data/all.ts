@@ -43,6 +43,16 @@ import { LAVORO } from "./content/lavoro";
 import { NUTRIZIONE } from "./content/nutrizione";
 import { GENETICA } from "./content/genetica";
 import { ANDROLOGIA } from "./content/andrologia";
+import { DIABETOLOGIA } from "./content/diabetologia";
+import { EPATOLOGIA } from "./content/epatologia";
+import { PROCTOLOGIA } from "./content/proctologia";
+import { SENOLOGIA } from "./content/senologia";
+import { NUCLEARE } from "./content/nucleare";
+import { IMMUNOLOGIA } from "./content/immunologia";
+import { NEONATOLOGIA } from "./content/neonatologia";
+import { RIPRODUZIONE } from "./content/riproduzione";
+import { TRASFUSIONALE } from "./content/trasfusionale";
+import { LEGALE } from "./content/legale";
 import { CONIUGAZIONE } from "./content/coniugazione";
 
 export * from "./taxonomy";
@@ -88,5 +98,15 @@ export const PHRASES: Phrase[] = [
   ...NUTRIZIONE,
   ...GENETICA,
   ...ANDROLOGIA,
+  ...DIABETOLOGIA,
+  ...EPATOLOGIA,
+  ...PROCTOLOGIA,
+  ...SENOLOGIA,
+  ...NUCLEARE,
+  ...IMMUNOLOGIA,
+  ...NEONATOLOGIA,
+  ...RIPRODUZIONE,
+  ...TRASFUSIONALE,
+  ...LEGALE,
   ...CONIUGAZIONE,
 ];

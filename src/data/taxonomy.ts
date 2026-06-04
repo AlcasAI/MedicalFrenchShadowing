@@ -47,6 +47,16 @@ export type Specialty =
   | "Nutrizione e Dietetica"
   | "Genetica medica"
   | "Andrologia"
+  | "Diabetologia"
+  | "Epatologia"
+  | "Proctologia"
+  | "Senologia"
+  | "Medicina nucleare"
+  | "Immunologia clinica"
+  | "Neonatologia"
+  | "Medicina della riproduzione"
+  | "Medicina trasfusionale"
+  | "Medicina legale"
   | "Coniugazione verbale";
 
 export type Phase =
@@ -116,6 +126,16 @@ export const SPECIALTIES: { name: Specialty; emoji: string; color: string }[] = 
   { name: "Nutrizione e Dietetica", emoji: "🥗", color: "#4d7c0f" },
   { name: "Genetica medica", emoji: "🧬", color: "#6d28d9" },
   { name: "Andrologia", emoji: "♂️", color: "#075985" },
+  { name: "Diabetologia", emoji: "🍬", color: "#b45309" },
+  { name: "Epatologia", emoji: "🧫", color: "#7c2d12" },
+  { name: "Proctologia", emoji: "⚕️", color: "#6b7280" },
+  { name: "Senologia", emoji: "🌸", color: "#ec4899" },
+  { name: "Medicina nucleare", emoji: "☢️", color: "#eab308" },
+  { name: "Immunologia clinica", emoji: "🛡️", color: "#14b8a6" },
+  { name: "Neonatologia", emoji: "👶", color: "#f472b6" },
+  { name: "Medicina della riproduzione", emoji: "🌱", color: "#8b5cf6" },
+  { name: "Medicina trasfusionale", emoji: "🅾️", color: "#b91c1c" },
+  { name: "Medicina legale", emoji: "⚖️", color: "#334155" },
   { name: "Coniugazione verbale", emoji: "📝", color: "#5b21b6" },
 ];
 
