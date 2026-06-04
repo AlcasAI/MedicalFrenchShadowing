@@ -43,6 +43,5 @@ server) · deploy automatico su GitHub Pages.
 
 ## Prossimi passi
 1. Audio pre-generato reale (TTS cloud → file mp3) + sincronizzazione waveform
-2. Contenuti medici validati clinicamente
-3. Valutazione della pronuncia (ASR) nello shadowing
-4. SRS completo (FSRS) + sincronizzazione multi-dispositivo
+2. Valutazione della pronuncia (ASR) nello shadowing
+3. SRS completo (FSRS) + sincronizzazione multi-dispositivo
