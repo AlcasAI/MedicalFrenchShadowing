@@ -45,3 +45,8 @@ server) · deploy automatico su GitHub Pages.
 1. Audio pre-generato reale (TTS cloud → file mp3) + sincronizzazione waveform
 2. Valutazione della pronuncia (ASR) nello shadowing
 3. SRS completo (FSRS) + sincronizzazione multi-dispositivo
+
+## Disclaimer
+Strumento didattico per l'apprendimento del francese medico. I contenuti non
+costituiscono indicazioni cliniche né sostituiscono la formazione o il giudizio
+professionale.
