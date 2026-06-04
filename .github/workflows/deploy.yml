@@ -3,7 +3,7 @@ name: Deploy su GitHub Pages
 on:
   push:
     branches:
-      - claude/adoring-franklin-SAE8d
+      - main
   workflow_dispatch:
 
 permissions:
