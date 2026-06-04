@@ -354,6 +354,12 @@ export default function Passive() {
             📘 Mostra grammatica
           </button>
         </div>
+
+        <p className="passive-disclaimer">
+          Strumento didattico per l'apprendimento del francese medico. I contenuti
+          non costituiscono indicazioni cliniche né sostituiscono la formazione o il
+          giudizio professionale.
+        </p>
       </div>
     </div>
   );

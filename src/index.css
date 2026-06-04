@@ -600,6 +600,15 @@ body {
   gap: 8px;
   margin-top: 2px;
 }
+.passive-disclaimer {
+  margin-top: 22px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 10.5px;
+  line-height: 1.5;
+  text-align: center;
+  opacity: 0.45;
+}
 .playlist-btn {
   width: 100%;
   border: 1px solid rgba(255, 255, 255, 0.25);
