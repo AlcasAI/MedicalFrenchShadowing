@@ -3,6 +3,7 @@
 // verso le 5.000. Le altre pagine continuano a importare da "../data/phrases".
 
 import type { Phrase } from "./taxonomy";
+import { GRAMMAR_BY_ID } from "./grammarMap";
 import { ANAMNESI } from "./content/anamnesi";
 import { URGENZE } from "./content/urgenze";
 import { CARDIOLOGIA } from "./content/cardiologia";
@@ -57,7 +58,7 @@ import { CONIUGAZIONE } from "./content/coniugazione";
 
 export * from "./taxonomy";
 
-export const PHRASES: Phrase[] = [
+const RAW_PHRASES: Phrase[] = [
   ...ANAMNESI,
   ...URGENZE,
   ...CARDIOLOGIA,
@@ -110,3 +111,11 @@ export const PHRASES: Phrase[] = [
   ...LEGALE,
   ...CONIUGAZIONE,
 ];
+
+// Aggancia la regola grammaticale (mappa generata) a ogni frase.
+// Un tag scritto a mano nella frase ha SEMPRE la precedenza.
+export const PHRASES: Phrase[] = RAW_PHRASES.map((p) => {
+  if (p.grammar) return p;
+  const g = GRAMMAR_BY_ID[p.id];
+  return g ? { ...p, grammar: g.grammar, focus: g.focus } : p;
+});
