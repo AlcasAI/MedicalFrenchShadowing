@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { PHRASES } from "../data/all";
+import { GRAMMAR_RULES } from "../data/grammar";
 import { speakFr, stopSpeaking, voiceStatus } from "../lib/tts";
 import { toggleMastered, getProgress } from "../lib/storage";
 
@@ -21,6 +22,7 @@ export default function Shadowing() {
   const [loop, setLoop] = useState(false);
   const [gap, setGap] = useState(true);
   const [slow, setSlow] = useState(false);
+  const [showGram, setShowGram] = useState(true);
   const [recording, setRecording] = useState(false);
   const [mastered, setMastered] = useState<string[]>(getProgress().masteredIds);
   const [audioNote, setAudioNote] = useState<string | null>(null);
@@ -142,9 +144,26 @@ export default function Shadowing() {
           <button className={"toggle" + (showIt ? " on" : "")} onClick={() => setShowIt((v) => !v)}>
             🇮🇹 Traduzione
           </button>
+          {phrase.grammar && (
+            <button className={"toggle" + (showGram ? " on" : "")} onClick={() => setShowGram((v) => !v)}>
+              📘 Grammatica
+            </button>
+          )}
         </div>
 
         {phrase.tip && <div className="shadow-tip">💡 {phrase.tip}</div>}
+
+        {phrase.grammar && showGram && (() => {
+          const rule = GRAMMAR_RULES[phrase.grammar];
+          return (
+            <div className="grammar-box">
+              <div className="grammar-title">📘 {rule.title}</div>
+              <div className="grammar-text">{rule.explanation}</div>
+              {phrase.focus && <div className="grammar-focus">In questa frase: {phrase.focus}</div>}
+              <div className="grammar-pattern">▸ {rule.pattern}</div>
+            </div>
+          );
+        })()}
       </div>
 
       <button

@@ -1,6 +1,8 @@
 // Tassonomia e schema dati per il catalogo di frasi mediche.
 // Due assi: SPECIALITÀ (dominio clinico) × FASE (momento della visita).
 
+import type { GrammarTag } from "./grammar";
+
 export type Level = "B2" | "C1" | "C2";
 
 // Registro linguistico: rivolto al paziente vs linguaggio tecnico (referto/colleghi)
@@ -81,6 +83,10 @@ export interface Phrase {
   register: Register;
   ipa?: string;
   tip?: string;
+  /** Regola grammaticale principale (chiave nella libreria GRAMMAR_RULES) */
+  grammar?: GrammarTag;
+  /** Approccio ibrido: forma specifica della frase che incarna la regola */
+  focus?: string;
 }
 
 export const LEVELS: Level[] = ["B2", "C1", "C2"];
