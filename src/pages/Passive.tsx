@@ -198,7 +198,8 @@ export default function Passive() {
   return (
     <div className="passive">
       <div className="passive-head">
-        <div className="passive-brand">🎧 Modalità passiva</div>
+        <div className="passive-title">🎧 Medical French Shadowing</div>
+        <div className="passive-tagline">Ascolto passivo · francese medico FR → IT</div>
         <div className="passive-sub">
           {phr ? `${phr.specialty} · ${phr.phase} · ${phr.level}` : "Nessuna frase selezionata"}
         </div>

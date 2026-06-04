@@ -509,7 +509,14 @@ body {
   inset: 0;
   max-width: 480px;
   margin: 0 auto;
-  background: linear-gradient(160deg, #0f172a, #134e4a);
+  /* Sfondo dinamico: gradiente base + tre aloni che fluttuano lentamente */
+  background:
+    radial-gradient(70% 55% at 18% 12%, rgba(20, 184, 166, 0.42), transparent 62%),
+    radial-gradient(65% 50% at 88% 86%, rgba(37, 99, 235, 0.36), transparent 60%),
+    radial-gradient(55% 42% at 60% 48%, rgba(129, 90, 240, 0.26), transparent 66%),
+    linear-gradient(150deg, #0b1120, #0f172a 42%, #0e3a3a);
+  background-size: 200% 200%, 200% 200%, 200% 200%, 300% 300%;
+  animation: passiveBg 24s ease-in-out infinite;
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -518,15 +525,48 @@ body {
 }
 .passive-head {
   text-align: center;
+  margin-bottom: 4px;
 }
-.passive-brand {
+.passive-title {
   font-weight: 800;
-  font-size: 18px;
+  font-size: 22px;
+  letter-spacing: -0.3px;
+  background: linear-gradient(90deg, #5eead4, #93c5fd 55%, #c4b5fd);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 2px 10px rgba(45, 212, 191, 0.25));
+}
+.passive-tagline {
+  opacity: 0.7;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  margin-top: 3px;
 }
 .passive-sub {
-  opacity: 0.6;
-  font-size: 13px;
-  margin-top: 4px;
+  opacity: 0.55;
+  font-size: 12px;
+  margin-top: 6px;
+}
+
+@keyframes passiveBg {
+  0% {
+    background-position: 0% 0%, 100% 100%, 50% 50%, 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%, 0% 10%, 65% 35%, 100% 50%;
+  }
+  100% {
+    background-position: 0% 0%, 100% 100%, 50% 50%, 0% 50%;
+  }
+}
+
+/* Rispetta chi preferisce meno animazioni */
+@media (prefers-reduced-motion: reduce) {
+  .passive {
+    animation: none;
+  }
 }
 .passive-rep {
   margin-top: 22px;
