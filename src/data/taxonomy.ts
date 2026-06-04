@@ -36,7 +36,17 @@ export type Specialty =
   | "Chirurgia vascolare"
   | "Cure palliative"
   | "Fisiatria/Riabilitazione"
-  | "Odontoiatria";
+  | "Odontoiatria"
+  | "Neurochirurgia"
+  | "Cardiochirurgia"
+  | "Chirurgia plastica"
+  | "Terapia del dolore"
+  | "Tossicologia"
+  | "Medicina dello sport"
+  | "Medicina del lavoro"
+  | "Nutrizione e Dietetica"
+  | "Genetica medica"
+  | "Andrologia";
 
 export type Phase =
   | "Anamnesi"
@@ -95,6 +105,16 @@ export const SPECIALTIES: { name: Specialty; emoji: string; color: string }[] = 
   { name: "Cure palliative", emoji: "🕊️", color: "#6b7280" },
   { name: "Fisiatria/Riabilitazione", emoji: "🦽", color: "#0e7490" },
   { name: "Odontoiatria", emoji: "🦷", color: "#0369a1" },
+  { name: "Neurochirurgia", emoji: "🧠", color: "#1e3a8a" },
+  { name: "Cardiochirurgia", emoji: "❤️‍🩹", color: "#9f1239" },
+  { name: "Chirurgia plastica", emoji: "🪡", color: "#d946ef" },
+  { name: "Terapia del dolore", emoji: "🩹", color: "#f43f5e" },
+  { name: "Tossicologia", emoji: "☠️", color: "#166534" },
+  { name: "Medicina dello sport", emoji: "🏃", color: "#15803d" },
+  { name: "Medicina del lavoro", emoji: "🦺", color: "#92400e" },
+  { name: "Nutrizione e Dietetica", emoji: "🥗", color: "#4d7c0f" },
+  { name: "Genetica medica", emoji: "🧬", color: "#6d28d9" },
+  { name: "Andrologia", emoji: "♂️", color: "#075985" },
 ];
 
 export const PHASES: { name: Phase; emoji: string }[] = [

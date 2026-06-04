@@ -33,6 +33,16 @@ import { VASCOLARE } from "./content/vascolare";
 import { PALLIATIVE } from "./content/palliative";
 import { RIABILITAZIONE } from "./content/riabilitazione";
 import { ODONTOIATRIA } from "./content/odontoiatria";
+import { NEUROCHIRURGIA } from "./content/neurochirurgia";
+import { CARDIOCHIRURGIA } from "./content/cardiochirurgia";
+import { PLASTICA } from "./content/plastica";
+import { DOLORE } from "./content/dolore";
+import { TOSSICOLOGIA } from "./content/tossicologia";
+import { SPORT } from "./content/sport";
+import { LAVORO } from "./content/lavoro";
+import { NUTRIZIONE } from "./content/nutrizione";
+import { GENETICA } from "./content/genetica";
+import { ANDROLOGIA } from "./content/andrologia";
 
 export * from "./taxonomy";
 
@@ -67,4 +77,14 @@ export const PHRASES: Phrase[] = [
   ...PALLIATIVE,
   ...RIABILITAZIONE,
   ...ODONTOIATRIA,
+  ...NEUROCHIRURGIA,
+  ...CARDIOCHIRURGIA,
+  ...PLASTICA,
+  ...DOLORE,
+  ...TOSSICOLOGIA,
+  ...SPORT,
+  ...LAVORO,
+  ...NUTRIZIONE,
+  ...GENETICA,
+  ...ANDROLOGIA,
 ];
