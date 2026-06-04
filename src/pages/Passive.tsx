@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { SPECIALTIES, PHASES, LEVELS } from "../data/phrases";
 import type { Level, Phase, Specialty, Phrase } from "../data/phrases";
+import { GRAMMAR_RULES } from "../data/grammar";
 import { speakFrAsync, speakItAsync, stopSpeaking } from "../lib/tts";
 
 const REPS_OPTIONS = [1, 2, 3, 5, 10];
@@ -50,6 +51,7 @@ export default function Passive() {
   const [loop, setLoop] = useState(true);
   const [showIt, setShowIt] = useState(true);
   const [readIt, setReadIt] = useState(true);
+  const [showGram, setShowGram] = useState(true);
   const [repNow, setRepNow] = useState(0);
   const [phase, setPhase] = useState<"fr" | "it">("fr");
 
@@ -287,6 +289,17 @@ export default function Passive() {
                 : `🔊 Ripetizione ${repNow}/${reps}`}{" "}
               · frase {index + 1}/{playlist.length}
             </div>
+            {phr.grammar && showGram && (() => {
+              const rule = GRAMMAR_RULES[phr.grammar];
+              return (
+                <div className="grammar-box">
+                  <div className="grammar-title">📘 {rule.title}</div>
+                  <div className="grammar-text">{rule.explanation}</div>
+                  {phr.focus && <div className="grammar-focus">In questa frase: {phr.focus}</div>}
+                  <div className="grammar-pattern">▸ {rule.pattern}</div>
+                </div>
+              );
+            })()}
           </>
         ) : (
           <div className="pfr" style={{ fontSize: 18, opacity: 0.8 }}>
@@ -335,6 +348,9 @@ export default function Passive() {
           </button>
           <button className={"toggle" + (showIt ? " on" : "")} onClick={() => setShowIt((v) => !v)}>
             🇮🇹 Mostra traduzione
+          </button>
+          <button className={"toggle" + (showGram ? " on" : "")} onClick={() => setShowGram((v) => !v)}>
+            📘 Mostra grammatica
           </button>
         </div>
       </div>
