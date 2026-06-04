@@ -46,7 +46,8 @@ export type Specialty =
   | "Medicina del lavoro"
   | "Nutrizione e Dietetica"
   | "Genetica medica"
-  | "Andrologia";
+  | "Andrologia"
+  | "Coniugazione verbale";
 
 export type Phase =
   | "Anamnesi"
@@ -115,6 +116,7 @@ export const SPECIALTIES: { name: Specialty; emoji: string; color: string }[] = 
   { name: "Nutrizione e Dietetica", emoji: "🥗", color: "#4d7c0f" },
   { name: "Genetica medica", emoji: "🧬", color: "#6d28d9" },
   { name: "Andrologia", emoji: "♂️", color: "#075985" },
+  { name: "Coniugazione verbale", emoji: "📝", color: "#5b21b6" },
 ];
 
 export const PHASES: { name: Phase; emoji: string }[] = [

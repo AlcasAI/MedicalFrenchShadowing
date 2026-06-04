@@ -43,6 +43,7 @@ import { LAVORO } from "./content/lavoro";
 import { NUTRIZIONE } from "./content/nutrizione";
 import { GENETICA } from "./content/genetica";
 import { ANDROLOGIA } from "./content/andrologia";
+import { CONIUGAZIONE } from "./content/coniugazione";
 
 export * from "./taxonomy";
 
@@ -87,4 +88,5 @@ export const PHRASES: Phrase[] = [
   ...NUTRIZIONE,
   ...GENETICA,
   ...ANDROLOGIA,
+  ...CONIUGAZIONE,
 ];
